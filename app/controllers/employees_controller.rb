@@ -1,10 +1,11 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :correct_user, only: %i[ edit update destroy ]
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all
+    @employees = current_user.employees.all
   end
 
   # GET /employees/1 or /employees/1.json
@@ -13,7 +14,8 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
-    @employee = Employee.new
+    #@employee = Employee.new
+    @employee = current_user.employees.build
   end
 
   # GET /employees/1/edit
@@ -22,7 +24,8 @@ class EmployeesController < ApplicationController
 
   # POST /employees or /employees.json
   def create
-    @employee = Employee.new(employee_params)
+    #@employee = Employee.new(employee_params)
+    @employee = current_user.employees.build(employee_params)
 
     respond_to do |format|
       if @employee.save
@@ -56,6 +59,12 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+def correct_user
+  @user = current_user.friends.find_by(id: params[:id])
+  redirect_to employees_path, notice: "Not allowed to edit this employee" if  @user.nil?
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
