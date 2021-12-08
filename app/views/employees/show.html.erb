@@ -1,29 +1,17 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @employee.first_name %>
-</p>
 
-<p>
-  <strong>Second name:</strong>
-  <%= @employee.second_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @employee.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @employee.phone %>
-</p>
-
-<p>
-  <strong>Vk:</strong>
-  <%= @employee.vk %>
-</p>
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<div class="container-fluid bg-dark text-light p-5">
+  <div class="container bg-dark p-5">
+    <h1 class="display-4"><%= @employee.first_name + " " + @employee.second_name%></h1>
+    <hr>
+    <p>
+      <%= @employee.email %>
+      |
+      <%= @employee.phone %>
+      |
+      <%= @employee.vk %>
+    </p>
+    <%= link_to 'Edit', edit_employee_path(@employee), class:"btn btn-outline-light" %>
+    <%= link_to 'Back', employees_path, class:"btn btn-outline-light"%>
+  </div>
+</div>
