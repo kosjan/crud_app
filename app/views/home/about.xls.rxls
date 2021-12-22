@@ -1,0 +1,5 @@
+excel_document(:filename => "Отчет.xls", :template_path => "app/views/home/template/template.xls") do |workbook|
+    workbook.worksheet 0 do |sheet|
+      sheet[19,1] = 'Japan'
+    end
+end
