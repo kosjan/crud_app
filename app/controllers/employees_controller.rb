@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
-  before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_employee, only: %i[ show edit update destroy jeditable]
   before_action :correct_user, only: %i[ edit update destroy ]
 
   # GET /employees or /employees.json
@@ -57,6 +57,22 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to employees_url, notice: "Employee was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+
+  #Настройка редактируемых полей в таблице
+
+  def jeditable
+    column = params[:column]
+    val = params[:vk]
+    @employee[column] = val
+    if @employee.save
+      flash[:notice]='Запись была успешно обновлена.'
+      render :plain=> @employee.vk
+    else
+      flash[:alert]='Запись не обновлена.'
+      render :plain => @employee[column]
     end
   end
 

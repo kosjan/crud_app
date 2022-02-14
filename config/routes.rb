@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :employees
+  resources :employees do
+    collection do
+      post :jeditable
+    end
+  end
   #get 'home/index'
   root 'employees#index'
   get 'home/about'

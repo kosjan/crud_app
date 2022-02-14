@@ -1,5 +1,5 @@
 <%if user_signed_in?%>
-  <table class="table table-striped table-hover table-bordered">
+  <table class="table table-striped table-hover table-bordered datatable">
     <thead class="table-dark">
       <tr>
         <th>Name</th>
@@ -13,12 +13,12 @@
 
     <tbody>
       <% @employees.each do |employee| %>
-        <tr>
+        <tr id="<%= employee.id %>">
           <%if employee.user == current_user%>
             <td><%= link_to "#{employee.first_name} #{employee.second_name}", employee, style:"color:#212529;"%></td>
             <td><%= employee.email %></td>
             <td><%= employee.phone %></td>
-            <td><%= employee.vk %></td>
+            <td class="vk" id="vk"><%= employee.vk %></td>
             <td><%= current_user.name %></td>
             <td><%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <i class="fa fa-trash" style="color:#212529;"></i>

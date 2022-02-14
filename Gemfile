@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
@@ -37,6 +37,16 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '~> 4.8'
 gem "font-awesome-rails"
+
+
+#jeditable gems
+gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jeditable-rails'
+gem 'jquery-datatables-rails'
+
+
 gem 'caxlsx'
 gem 'caxlsx_rails'
 gem 'simple_xlsx_reader'
@@ -60,6 +70,13 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+end
+
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-DataTables'
+  gem 'rails-assets-select2'
+  gem 'rails-assets-toastr', '~> 2.1.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
