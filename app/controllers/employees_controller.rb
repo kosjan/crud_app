@@ -3,10 +3,25 @@ class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[ show edit update destroy jeditable]
   before_action :correct_user, only: %i[ edit update destroy ]
 
+
+  require 'telegram/bot'
+  # token = '7334438796:AAHEg9yvIOtmVdKvZghkqUlubREjWJfnQWE'
+  # Telegram::Bot::Client.run(token) do |bot|
+  #   bot.listen do |message|
+  #     case message.text
+  #     when '/start'
+  #       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+  #     when '/stop'
+  #       bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")
+  #     end
+  #   end
+  # end
+
   # GET /employees or /employees.json
   def index
     @employees = Employee.all
   end
+
 
   # GET /employees/1 or /employees/1.json
   def show
